@@ -1,29 +1,68 @@
 <script>
+  import { matches, matchCompetitions } from './data/matches.js'
   import { players, playerPositions } from './data/players.js'
+  import { programmes, programmeTypes } from './data/programmes.js'
+  import { seasons, seasonPeriods } from './data/seasons.js'
   import { archiveSections, featuredStats, records } from './data/wiki.js'
 
   let activePage = 'home'
   let activeSection = 'all'
   let activePosition = 'All'
+  let activeCompetition = 'All'
+  let activeProgrammeType = 'All'
+  let activeSeasonPeriod = 'All'
+  let selectedPlayerId = null
   let searchTerm = ''
   let playerSearch = ''
+  let matchSearch = ''
+  let programmeSearch = ''
+  let seasonSearch = ''
 
-  $: normalizedSearch = searchTerm.trim().toLowerCase()
+  $: selectedPlayer = players.find((player) => player.id === selectedPlayerId)
+
   $: visibleRecords = records.filter((record) => {
+    const query = searchTerm.trim().toLowerCase()
     const matchesSection = activeSection === 'all' || record.type === activeSection
     const searchableText = `${record.title} ${record.meta} ${record.detail} ${record.tags.join(' ')}`
       .toLowerCase()
 
-    return matchesSection && searchableText.includes(normalizedSearch)
+    return matchesSection && searchableText.includes(query)
   })
 
-  $: normalizedPlayerSearch = playerSearch.trim().toLowerCase()
   $: visiblePlayers = players.filter((player) => {
+    const query = playerSearch.trim().toLowerCase()
     const matchesPosition = activePosition === 'All' || player.position === activePosition
     const searchableText = `${player.name} ${player.position} ${player.era} ${player.summary} ${player.honours.join(' ')}`
       .toLowerCase()
 
-    return matchesPosition && searchableText.includes(normalizedPlayerSearch)
+    return matchesPosition && searchableText.includes(query)
+  })
+
+  $: visibleMatches = matches.filter((match) => {
+    const query = matchSearch.trim().toLowerCase()
+    const matchesCompetition = activeCompetition === 'All' || match.competition === activeCompetition
+    const searchableText = `${match.title} ${match.competition} ${match.venue} ${match.opponent} ${match.notes} ${match.tags.join(' ')}`
+      .toLowerCase()
+
+    return matchesCompetition && searchableText.includes(query)
+  })
+
+  $: visibleProgrammes = programmes.filter((programme) => {
+    const query = programmeSearch.trim().toLowerCase()
+    const matchesType = activeProgrammeType === 'All' || programme.competition === activeProgrammeType
+    const searchableText = `${programme.title} ${programme.opponent} ${programme.competition} ${programme.notes} ${programme.tags.join(' ')}`
+      .toLowerCase()
+
+    return matchesType && searchableText.includes(query)
+  })
+
+  $: visibleSeasons = seasons.filter((season) => {
+    const query = seasonSearch.trim().toLowerCase()
+    const matchesPeriod = activeSeasonPeriod === 'All' || season.period === activeSeasonPeriod
+    const searchableText = `${season.title} ${season.period} ${season.leagueFinish} ${season.cups} ${season.summary} ${season.tags.join(' ')}`
+      .toLowerCase()
+
+    return matchesPeriod && searchableText.includes(query)
   })
 
   $: playerStats = [
@@ -36,23 +75,25 @@
   const sectionLabel = (sectionId) =>
     archiveSections.find((section) => section.id === sectionId)?.label ?? 'Archive'
 
-  const goHome = () => {
-    activePage = 'home'
+  const setPage = (page) => {
+    activePage = page
+    selectedPlayerId = null
   }
 
-  const goPlayers = () => {
-    activePage = 'players'
+  const showPlayer = (playerId) => {
+    selectedPlayerId = playerId
+    activePage = 'player-detail'
   }
 
   const showArchiveSection = (sectionId) => {
     activeSection = sectionId
-    activePage = sectionId === 'players' ? 'players' : 'home'
+    setPage(sectionId)
   }
 </script>
 
 <main class="site-shell">
   <header class="site-header">
-    <button class="brand" type="button" onclick={goHome} aria-label="Shamrock Rovers Wiki home">
+    <button class="brand" type="button" onclick={() => setPage('home')} aria-label="Shamrock Rovers Wiki home">
       <span class="brand-mark">SR</span>
       <span>
         <strong>Shamrock Rovers Wiki</strong>
@@ -61,15 +102,87 @@
     </button>
 
     <nav class="top-nav" aria-label="Primary navigation">
-      <button type="button" class:active={activePage === 'home'} onclick={goHome}>Home</button>
-      <button type="button" class:active={activePage === 'players'} onclick={goPlayers}>Players</button>
-      <button type="button" onclick={() => showArchiveSection('matches')}>Matches</button>
-      <button type="button" onclick={() => showArchiveSection('programmes')}>Programmes</button>
-      <button type="button" onclick={() => showArchiveSection('seasons')}>Seasons</button>
+      <button type="button" class:active={activePage === 'home'} onclick={() => setPage('home')}>Home</button>
+      <button type="button" class:active={activePage === 'players' || activePage === 'player-detail'} onclick={() => setPage('players')}>Players</button>
+      <button type="button" class:active={activePage === 'matches'} onclick={() => setPage('matches')}>Matches</button>
+      <button type="button" class:active={activePage === 'programmes'} onclick={() => setPage('programmes')}>Programmes</button>
+      <button type="button" class:active={activePage === 'seasons'} onclick={() => setPage('seasons')}>Seasons</button>
     </nav>
   </header>
 
-  {#if activePage === 'players'}
+  {#if activePage === 'player-detail' && selectedPlayer}
+    <section class="page-hero players-hero">
+      <div>
+        <button class="back-link" type="button" onclick={() => setPage('players')}>Back to players</button>
+        <p class="eyebrow">{selectedPlayer.position}</p>
+        <h1>{selectedPlayer.name}</h1>
+        <p class="intro">{selectedPlayer.summary}</p>
+      </div>
+
+      <div class="mini-stat-grid" aria-label="Player profile summary">
+        <div>
+          <span>{selectedPlayer.era}</span>
+          <p>Era</p>
+        </div>
+        <div>
+          <span>{selectedPlayer.appearances}</span>
+          <p>Appearances</p>
+        </div>
+        <div>
+          <span>{selectedPlayer.goals}</span>
+          <p>Goals</p>
+        </div>
+        <div>
+          <span>{selectedPlayer.honours.length}</span>
+          <p>Honours listed</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <article class="detail-main">
+        <p class="eyebrow">Biography</p>
+        <h2>Profile notes</h2>
+        <p>{selectedPlayer.biography}</p>
+      </article>
+
+      <aside class="detail-side">
+        <h3>Honours</h3>
+        <div class="tag-list">
+          {#each selectedPlayer.honours as honour}
+            <span>{honour}</span>
+          {/each}
+        </div>
+      </aside>
+
+      <article class="detail-card">
+        <h3>Seasons</h3>
+        <ul>
+          {#each selectedPlayer.seasons as season}
+            <li>{season}</li>
+          {/each}
+        </ul>
+      </article>
+
+      <article class="detail-card">
+        <h3>Notable matches</h3>
+        <ul>
+          {#each selectedPlayer.notableMatches as match}
+            <li>{match}</li>
+          {/each}
+        </ul>
+      </article>
+
+      <article class="detail-card">
+        <h3>Source notes</h3>
+        <ul>
+          {#each selectedPlayer.sources as source}
+            <li>{source}</li>
+          {/each}
+        </ul>
+      </article>
+    </section>
+  {:else if activePage === 'players'}
     <section class="page-hero players-hero">
       <div>
         <p class="eyebrow">Player index</p>
@@ -90,7 +203,7 @@
       </div>
     </section>
 
-    <section class="players-section" aria-labelledby="players-title">
+    <section class="archive-page" aria-labelledby="players-title">
       <div class="records-toolbar">
         <div>
           <p class="eyebrow">Players</p>
@@ -123,12 +236,12 @@
       <div class="players-grid">
         {#each visiblePlayers as player}
           <article class="player-card">
-            <div class="player-avatar" aria-hidden="true">
+            <button class="player-avatar" type="button" onclick={() => showPlayer(player.id)} aria-label={`Open ${player.name}`}>
               {player.name
                 .split(' ')
                 .map((part) => part[0])
                 .join('')}
-            </div>
+            </button>
             <div class="player-card-body">
               <div class="record-topline">
                 <span>{player.position}</span>
@@ -146,10 +259,8 @@
                   <dd>{player.goals}</dd>
                 </div>
               </dl>
-              <div class="tag-list">
-                {#each player.honours as honour}
-                  <span>{honour}</span>
-                {/each}
+              <div class="card-actions">
+                <button type="button" onclick={() => showPlayer(player.id)}>Open profile</button>
               </div>
             </div>
           </article>
@@ -158,6 +269,163 @@
             <h3>No players found</h3>
             <p>Try a different search term or clear the position filter.</p>
           </div>
+        {/each}
+      </div>
+    </section>
+  {:else if activePage === 'matches'}
+    <section class="page-hero archive-hero">
+      <div>
+        <p class="eyebrow">Match archive</p>
+        <h1>Results, fixtures, reports, and derby records.</h1>
+        <p class="intro">Track matches by competition, opponent, venue, result, scorers, attendance, and linked programmes.</p>
+      </div>
+    </section>
+
+    <section class="archive-page" aria-labelledby="matches-title">
+      <div class="records-toolbar">
+        <div>
+          <p class="eyebrow">Matches</p>
+          <h2 id="matches-title">Match records</h2>
+        </div>
+        <label class="search-box">
+          <span>Search matches</span>
+          <input type="search" bind:value={matchSearch} placeholder="Try derby, Europe, Tallaght..." aria-label="Search match records" />
+        </label>
+      </div>
+
+      <div class="filter-tabs" aria-label="Match competition filters">
+        {#each matchCompetitions as competition}
+          <button type="button" class:active={activeCompetition === competition} onclick={() => (activeCompetition = competition)}>
+            {competition}
+          </button>
+        {/each}
+      </div>
+
+      <div class="record-list">
+        {#each visibleMatches as match}
+          <article class="record-card">
+            <div class="record-topline">
+              <span>{match.competition}</span>
+              <small>{match.date}</small>
+            </div>
+            <h3>{match.title}</h3>
+            <p>{match.notes}</p>
+            <dl class="compact-facts">
+              <div><dt>Opponent</dt><dd>{match.opponent}</dd></div>
+              <div><dt>Venue</dt><dd>{match.venue}</dd></div>
+              <div><dt>Result</dt><dd>{match.result}</dd></div>
+            </dl>
+            <div class="tag-list">
+              {#each match.tags as tag}<span>{tag}</span>{/each}
+            </div>
+          </article>
+        {:else}
+          <div class="empty-state"><h3>No matches found</h3><p>Try another search or competition filter.</p></div>
+        {/each}
+      </div>
+    </section>
+  {:else if activePage === 'programmes'}
+    <section class="page-hero archive-hero">
+      <div>
+        <p class="eyebrow">Programme archive</p>
+        <h1>Catalogue match programmes and collectibles.</h1>
+        <p class="intro">Store opponent, date, competition, condition, cover images, scans, and the linked match record.</p>
+      </div>
+    </section>
+
+    <section class="archive-page" aria-labelledby="programmes-title">
+      <div class="records-toolbar">
+        <div>
+          <p class="eyebrow">Programmes</p>
+          <h2 id="programmes-title">Programme records</h2>
+        </div>
+        <label class="search-box">
+          <span>Search programmes</span>
+          <input type="search" bind:value={programmeSearch} placeholder="Try cup, derby, Europe..." aria-label="Search programme records" />
+        </label>
+      </div>
+
+      <div class="filter-tabs" aria-label="Programme type filters">
+        {#each programmeTypes as type}
+          <button type="button" class:active={activeProgrammeType === type} onclick={() => (activeProgrammeType = type)}>
+            {type}
+          </button>
+        {/each}
+      </div>
+
+      <div class="record-list">
+        {#each visibleProgrammes as programme}
+          <article class="programme-card">
+            <div class="programme-cover" aria-hidden="true">SR</div>
+            <div>
+              <div class="record-topline">
+                <span>{programme.competition}</span>
+                <small>{programme.date}</small>
+              </div>
+              <h3>{programme.title}</h3>
+              <p>{programme.notes}</p>
+              <dl class="compact-facts">
+                <div><dt>Opponent</dt><dd>{programme.opponent}</dd></div>
+                <div><dt>Condition</dt><dd>{programme.condition}</dd></div>
+              </dl>
+              <div class="tag-list">
+                {#each programme.tags as tag}<span>{tag}</span>{/each}
+              </div>
+            </div>
+          </article>
+        {:else}
+          <div class="empty-state"><h3>No programmes found</h3><p>Try another search or competition filter.</p></div>
+        {/each}
+      </div>
+    </section>
+  {:else if activePage === 'seasons'}
+    <section class="page-hero archive-hero">
+      <div>
+        <p class="eyebrow">Season archive</p>
+        <h1>Season-by-season club history.</h1>
+        <p class="intro">Bring together squads, tables, trophies, match links, programmes, and important moments.</p>
+      </div>
+    </section>
+
+    <section class="archive-page" aria-labelledby="seasons-title">
+      <div class="records-toolbar">
+        <div>
+          <p class="eyebrow">Seasons</p>
+          <h2 id="seasons-title">Season records</h2>
+        </div>
+        <label class="search-box">
+          <span>Search seasons</span>
+          <input type="search" bind:value={seasonSearch} placeholder="Try title, Europe, history..." aria-label="Search season records" />
+        </label>
+      </div>
+
+      <div class="filter-tabs" aria-label="Season period filters">
+        {#each seasonPeriods as period}
+          <button type="button" class:active={activeSeasonPeriod === period} onclick={() => (activeSeasonPeriod = period)}>
+            {period}
+          </button>
+        {/each}
+      </div>
+
+      <div class="record-list">
+        {#each visibleSeasons as season}
+          <article class="record-card">
+            <div class="record-topline">
+              <span>{season.period}</span>
+              <small>{season.leagueFinish}</small>
+            </div>
+            <h3>{season.title}</h3>
+            <p>{season.summary}</p>
+            <dl class="compact-facts">
+              <div><dt>League</dt><dd>{season.leagueFinish}</dd></div>
+              <div><dt>Cups</dt><dd>{season.cups}</dd></div>
+            </dl>
+            <div class="tag-list">
+              {#each season.tags as tag}<span>{tag}</span>{/each}
+            </div>
+          </article>
+        {:else}
+          <div class="empty-state"><h3>No seasons found</h3><p>Try another search or period filter.</p></div>
         {/each}
       </div>
     </section>
@@ -172,8 +440,8 @@
         </p>
 
         <div class="hero-actions">
-          <button class="primary-action" type="button" onclick={goPlayers}>Browse players</button>
-          <a class="secondary-action" href="#records">Browse records</a>
+          <button class="primary-action" type="button" onclick={() => setPage('players')}>Browse players</button>
+          <button class="secondary-action" type="button" onclick={() => setPage('matches')}>Browse matches</button>
         </div>
       </div>
 
@@ -218,29 +486,14 @@
 
         <label class="search-box">
           <span>Search</span>
-          <input
-            type="search"
-            bind:value={searchTerm}
-            placeholder="Try players, derby, programme..."
-            aria-label="Search archive records"
-          />
+          <input type="search" bind:value={searchTerm} placeholder="Try players, derby, programme..." aria-label="Search archive records" />
         </label>
       </div>
 
       <div class="filter-tabs" aria-label="Record filters">
-        <button
-          type="button"
-          class:active={activeSection === 'all'}
-          onclick={() => (activeSection = 'all')}
-        >
-          All
-        </button>
+        <button type="button" class:active={activeSection === 'all'} onclick={() => (activeSection = 'all')}>All</button>
         {#each archiveSections as section}
-          <button
-            type="button"
-            class:active={activeSection === section.id}
-            onclick={() => showArchiveSection(section.id)}
-          >
+          <button type="button" class:active={activeSection === section.id} onclick={() => showArchiveSection(section.id)}>
             {section.label}
           </button>
         {/each}
@@ -268,18 +521,6 @@
           </div>
         {/each}
       </div>
-    </section>
-
-    <section class="contribute-section" id="contribute" aria-labelledby="contribute-title">
-      <div>
-        <p class="eyebrow">Next build step</p>
-        <h2 id="contribute-title">Turn the homepage into a proper wiki.</h2>
-      </div>
-      <ol>
-        <li>Create individual detail pages for the player records.</li>
-        <li>Add verified sources for appearances, goals, honours, and seasons.</li>
-        <li>Then repeat this page pattern for matches, programmes, and seasons.</li>
-      </ol>
     </section>
   {/if}
 </main>

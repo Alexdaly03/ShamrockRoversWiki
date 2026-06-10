@@ -3,7 +3,7 @@ export const archiveSections = [
     id: 'players',
     label: 'Players',
     description: 'Profiles, positions, eras, appearances, goals, and notes.',
-    count: 4,
+    count: 6,
   },
   {
     id: 'matches',
@@ -44,7 +44,7 @@ export const records = [
     type: 'players',
     title: 'Paddy Ambrose',
     meta: 'Forward / Hall of Fame era',
-    detail: 'One of the club’s major goalscoring names, ready for a full biography and season-by-season record.',
+    detail: "One of the club's major goalscoring names, ready for a full biography and season-by-season record.",
     tags: ['Player', 'Goals'],
   },
   {

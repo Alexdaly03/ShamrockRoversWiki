@@ -219,6 +219,17 @@ h3 {
   color: #ffffff;
 }
 
+.back-link {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 6px;
+  color: #ffffff;
+  font-weight: 800;
+  margin-bottom: 24px;
+  min-height: 38px;
+  padding: 8px 12px;
+}
+
 .page-hero {
   background: #103d25;
   color: #ffffff;
@@ -240,6 +251,12 @@ h3 {
   background:
     linear-gradient(125deg, rgba(16, 61, 37, 0.97), rgba(12, 107, 59, 0.86)),
     linear-gradient(90deg, rgba(244, 197, 66, 0.22), transparent 42%);
+}
+
+.archive-hero {
+  background:
+    linear-gradient(125deg, rgba(12, 107, 59, 0.96), rgba(19, 37, 26, 0.9)),
+    linear-gradient(90deg, rgba(244, 197, 66, 0.2), transparent 48%);
 }
 
 .mini-stat-grid {
@@ -377,6 +394,7 @@ h3 {
   background: #eef4eb;
 }
 
+.archive-page,
 .players-section {
   background: #eef4eb;
   padding: clamp(42px, 7vw, 82px) clamp(18px, 4vw, 56px);
@@ -454,7 +472,8 @@ h3 {
 
 .record-card,
 .empty-state,
-.player-card {
+.player-card,
+.programme-card {
   padding: 22px;
 }
 
@@ -466,6 +485,17 @@ h3 {
   display: grid;
   gap: 18px;
   grid-template-columns: 82px minmax(0, 1fr);
+}
+
+.player-card,
+.player-avatar {
+  transition:
+    border-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.player-card:hover {
+  border-color: #9fc49e;
 }
 
 .player-avatar {
@@ -481,6 +511,10 @@ h3 {
   height: 82px;
   justify-content: center;
   width: 82px;
+}
+
+.player-avatar:hover {
+  transform: translateY(-1px);
 }
 
 .player-card-body {
@@ -510,9 +544,24 @@ h3 {
 
 .player-facts dd {
   color: #13251a;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 900;
   margin: 4px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.card-actions {
+  display: flex;
+  margin-top: 18px;
+}
+
+.card-actions button {
+  background: #103d25;
+  border-radius: 6px;
+  color: #ffffff;
+  font-weight: 800;
+  min-height: 38px;
+  padding: 8px 12px;
 }
 
 .record-topline {
@@ -553,6 +602,96 @@ h3 {
   padding: 4px 8px;
 }
 
+.compact-facts {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 18px 0 0;
+}
+
+.compact-facts div {
+  background: #f5f7f2;
+  border: 1px solid #dfe7dc;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.compact-facts dt {
+  color: #65786c;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.compact-facts dd {
+  color: #13251a;
+  font-weight: 800;
+  margin: 4px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.programme-card {
+  background: #ffffff;
+  border: 1px solid #dfe7dc;
+  border-radius: 8px;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 92px minmax(0, 1fr);
+}
+
+.programme-cover {
+  align-items: center;
+  align-self: start;
+  aspect-ratio: 3 / 4;
+  background:
+    linear-gradient(180deg, #0c6b3b 0 20%, #ffffff 20% 40%, #0c6b3b 40% 60%, #ffffff 60% 80%, #0c6b3b 80% 100%);
+  border: 1px solid #cbd9c7;
+  border-radius: 6px;
+  color: #f4c542;
+  display: flex;
+  font-weight: 900;
+  justify-content: center;
+  min-height: 122px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.detail-section {
+  background: #eef4eb;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+  padding: clamp(42px, 7vw, 82px) clamp(18px, 4vw, 56px);
+}
+
+.detail-main,
+.detail-side,
+.detail-card {
+  background: #ffffff;
+  border: 1px solid #dfe7dc;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.detail-main {
+  min-height: 260px;
+}
+
+.detail-main p:last-child,
+.detail-card li,
+.detail-side p {
+  color: #52665a;
+  line-height: 1.6;
+}
+
+.detail-card ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.detail-card li + li {
+  margin-top: 8px;
+}
+
 .empty-state {
   grid-column: 1 / -1;
 }
@@ -578,7 +717,8 @@ h3 {
   .hero-section,
   .page-hero,
   .section-heading,
-  .contribute-section {
+  .contribute-section,
+  .detail-section {
     grid-template-columns: 1fr;
   }
 
@@ -636,8 +776,21 @@ h3 {
     border-bottom: 0;
   }
 
-  .hero-actions a {
+  .hero-actions a,
+  .hero-actions button {
     justify-content: center;
     width: 100%;
+  }
+
+  .programme-card {
+    grid-template-columns: 1fr;
+  }
+
+  .programme-cover {
+    max-width: 120px;
+  }
+
+  .compact-facts {
+    grid-template-columns: 1fr;
   }
 }
