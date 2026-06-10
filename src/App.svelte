@@ -12,6 +12,9 @@
   let activeProgrammeType = 'All'
   let activeSeasonPeriod = 'All'
   let selectedPlayerId = null
+  let selectedMatchId = null
+  let selectedProgrammeId = null
+  let selectedSeasonId = null
   let searchTerm = ''
   let playerSearch = ''
   let matchSearch = ''
@@ -19,6 +22,17 @@
   let seasonSearch = ''
 
   $: selectedPlayer = players.find((player) => player.id === selectedPlayerId)
+  $: selectedMatch = matches.find((match) => match.id === selectedMatchId)
+  $: selectedProgramme = programmes.find((programme) => programme.id === selectedProgrammeId)
+  $: linkedProgrammeMatch = selectedProgramme
+    ? matches.find((match) => match.id === selectedProgramme.linkedMatchId)
+    : null
+  $: selectedSeason = seasons.find((season) => season.id === selectedSeasonId)
+  $: linkedSeasonMatches = selectedSeason
+    ? selectedSeason.linkedMatchIds
+        .map((matchId) => matches.find((match) => match.id === matchId))
+        .filter(Boolean)
+    : []
 
   $: visibleRecords = records.filter((record) => {
     const query = searchTerm.trim().toLowerCase()
@@ -78,11 +92,41 @@
   const setPage = (page) => {
     activePage = page
     selectedPlayerId = null
+    selectedMatchId = null
+    selectedProgrammeId = null
+    selectedSeasonId = null
   }
 
   const showPlayer = (playerId) => {
     selectedPlayerId = playerId
+    selectedMatchId = null
+    selectedProgrammeId = null
+    selectedSeasonId = null
     activePage = 'player-detail'
+  }
+
+  const showMatch = (matchId) => {
+    selectedMatchId = matchId
+    selectedPlayerId = null
+    selectedProgrammeId = null
+    selectedSeasonId = null
+    activePage = 'match-detail'
+  }
+
+  const showProgramme = (programmeId) => {
+    selectedProgrammeId = programmeId
+    selectedPlayerId = null
+    selectedMatchId = null
+    selectedSeasonId = null
+    activePage = 'programme-detail'
+  }
+
+  const showSeason = (seasonId) => {
+    selectedSeasonId = seasonId
+    selectedPlayerId = null
+    selectedMatchId = null
+    selectedProgrammeId = null
+    activePage = 'season-detail'
   }
 
   const showArchiveSection = (sectionId) => {
@@ -110,7 +154,239 @@
     </nav>
   </header>
 
-  {#if activePage === 'player-detail' && selectedPlayer}
+  {#if activePage === 'season-detail' && selectedSeason}
+    <section class="page-hero archive-hero">
+      <div>
+        <button class="back-link" type="button" onclick={() => setPage('seasons')}>Back to seasons</button>
+        <p class="eyebrow">{selectedSeason.period}</p>
+        <h1>{selectedSeason.title}</h1>
+        <p class="intro">{selectedSeason.summary}</p>
+      </div>
+
+      <div class="mini-stat-grid" aria-label="Season profile summary">
+        <div>
+          <span>{selectedSeason.leagueFinish}</span>
+          <p>League</p>
+        </div>
+        <div>
+          <span>{selectedSeason.cups}</span>
+          <p>Cups</p>
+        </div>
+        <div>
+          <span>{selectedSeason.europe}</span>
+          <p>Europe</p>
+        </div>
+        <div>
+          <span>{selectedSeason.manager}</span>
+          <p>Manager</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <article class="detail-main">
+        <p class="eyebrow">Season summary</p>
+        <h2>{selectedSeason.stadium}</h2>
+        <p>{selectedSeason.summary}</p>
+      </article>
+
+      <aside class="detail-side">
+        <h3>Top scorer</h3>
+        <p>{selectedSeason.topScorer}</p>
+      </aside>
+
+      <article class="detail-card">
+        <h3>Highlights</h3>
+        <ul>
+          {#each selectedSeason.highlights as highlight}
+            <li>{highlight}</li>
+          {/each}
+        </ul>
+      </article>
+
+      <article class="detail-card">
+        <h3>Linked matches</h3>
+        {#if linkedSeasonMatches.length}
+          <div class="linked-list">
+            {#each linkedSeasonMatches as match}
+              <button type="button" onclick={() => showMatch(match.id)}>
+                <strong>{match.title}</strong>
+                <span>{match.date}</span>
+              </button>
+            {/each}
+          </div>
+        {:else}
+          <p>No linked matches yet.</p>
+        {/if}
+      </article>
+
+      <article class="detail-card">
+        <h3>Sources</h3>
+        <ul>
+          {#each selectedSeason.sourceLinks as source}
+            <li>
+              <a href={source.url} target="_blank" rel="noreferrer">{source.label}</a>
+            </li>
+          {/each}
+        </ul>
+      </article>
+    </section>
+  {:else if activePage === 'programme-detail' && selectedProgramme}
+    <section class="page-hero archive-hero">
+      <div>
+        <button class="back-link" type="button" onclick={() => setPage('programmes')}>Back to programmes</button>
+        <p class="eyebrow">{selectedProgramme.competition}</p>
+        <h1>{selectedProgramme.title}</h1>
+        <p class="intro">{selectedProgramme.notes}</p>
+      </div>
+
+      <div class="mini-stat-grid" aria-label="Programme profile summary">
+        <div>
+          <span>{selectedProgramme.date}</span>
+          <p>Date</p>
+        </div>
+        <div>
+          <span>{selectedProgramme.opponent}</span>
+          <p>Opponent</p>
+        </div>
+        <div>
+          <span>{selectedProgramme.condition}</span>
+          <p>Condition</p>
+        </div>
+        <div>
+          <span>{selectedProgramme.coverStatus}</span>
+          <p>Cover</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <article class="detail-main">
+        <p class="eyebrow">Programme notes</p>
+        <h2>{selectedProgramme.venue}</h2>
+        <p>{selectedProgramme.notes}</p>
+      </article>
+
+      <aside class="detail-side">
+        <h3>Linked match</h3>
+        {#if linkedProgrammeMatch}
+          <p>{linkedProgrammeMatch.title}</p>
+          <div class="card-actions">
+            <button type="button" onclick={() => showMatch(linkedProgrammeMatch.id)}>Open match</button>
+          </div>
+        {:else}
+          <p>No linked match yet.</p>
+        {/if}
+      </aside>
+
+      <article class="detail-card">
+        <h3>Catalogue fields</h3>
+        <ul>
+          {#each selectedProgramme.details as item}
+            <li>{item}</li>
+          {/each}
+        </ul>
+      </article>
+
+      <article class="detail-card">
+        <h3>Tags</h3>
+        <div class="tag-list">
+          {#each selectedProgramme.tags as tag}
+            <span>{tag}</span>
+          {/each}
+        </div>
+      </article>
+
+      <article class="detail-card">
+        <h3>Sources</h3>
+        <ul>
+          {#each selectedProgramme.sourceLinks as source}
+            <li>
+              <a href={source.url} target="_blank" rel="noreferrer">{source.label}</a>
+            </li>
+          {/each}
+        </ul>
+      </article>
+    </section>
+  {:else if activePage === 'match-detail' && selectedMatch}
+    <section class="page-hero archive-hero">
+      <div>
+        <button class="back-link" type="button" onclick={() => setPage('matches')}>Back to matches</button>
+        <p class="eyebrow">{selectedMatch.competition}</p>
+        <h1>{selectedMatch.title}</h1>
+        <p class="intro">{selectedMatch.notes}</p>
+      </div>
+
+      <div class="mini-stat-grid" aria-label="Match profile summary">
+        <div>
+          <span>{selectedMatch.date}</span>
+          <p>Date</p>
+        </div>
+        <div>
+          <span>{selectedMatch.scoreline}</span>
+          <p>Score</p>
+        </div>
+        <div>
+          <span>{selectedMatch.venue}</span>
+          <p>Venue</p>
+        </div>
+        <div>
+          <span>{selectedMatch.attendance}</span>
+          <p>Attendance</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <article class="detail-main">
+        <p class="eyebrow">Match report</p>
+        <h2>{selectedMatch.result}</h2>
+        <p>{selectedMatch.notes}</p>
+      </article>
+
+      <aside class="detail-side">
+        <h3>Scorers</h3>
+        {#if selectedMatch.scorers.length}
+          <div class="tag-list">
+            {#each selectedMatch.scorers as scorer}
+              <span>{scorer}</span>
+            {/each}
+          </div>
+        {:else}
+          <p>No Rovers scorers listed.</p>
+        {/if}
+      </aside>
+
+      <article class="detail-card">
+        <h3>Timeline</h3>
+        <ul>
+          {#each selectedMatch.timeline as item}
+            <li>{item}</li>
+          {/each}
+        </ul>
+      </article>
+
+      <article class="detail-card">
+        <h3>Tags</h3>
+        <div class="tag-list">
+          {#each selectedMatch.tags as tag}
+            <span>{tag}</span>
+          {/each}
+        </div>
+      </article>
+
+      <article class="detail-card">
+        <h3>Sources</h3>
+        <ul>
+          {#each selectedMatch.sourceLinks as source}
+            <li>
+              <a href={source.url} target="_blank" rel="noreferrer">{source.label}</a>
+            </li>
+          {/each}
+        </ul>
+      </article>
+    </section>
+  {:else if activePage === 'player-detail' && selectedPlayer}
     <section class="page-hero players-hero">
       <div>
         <button class="back-link" type="button" onclick={() => setPage('players')}>Back to players</button>
@@ -174,10 +450,12 @@
       </article>
 
       <article class="detail-card">
-        <h3>Source notes</h3>
+        <h3>Sources</h3>
         <ul>
-          {#each selectedPlayer.sources as source}
-            <li>{source}</li>
+          {#each selectedPlayer.sourceLinks as source}
+            <li>
+              <a href={source.url} target="_blank" rel="noreferrer">{source.label}</a>
+            </li>
           {/each}
         </ul>
       </article>
@@ -318,6 +596,9 @@
             <div class="tag-list">
               {#each match.tags as tag}<span>{tag}</span>{/each}
             </div>
+            <div class="card-actions">
+              <button type="button" onclick={() => showMatch(match.id)}>Open match</button>
+            </div>
           </article>
         {:else}
           <div class="empty-state"><h3>No matches found</h3><p>Try another search or competition filter.</p></div>
@@ -367,9 +648,13 @@
               <dl class="compact-facts">
                 <div><dt>Opponent</dt><dd>{programme.opponent}</dd></div>
                 <div><dt>Condition</dt><dd>{programme.condition}</dd></div>
+                <div><dt>Cover</dt><dd>{programme.coverStatus}</dd></div>
               </dl>
               <div class="tag-list">
                 {#each programme.tags as tag}<span>{tag}</span>{/each}
+              </div>
+              <div class="card-actions">
+                <button type="button" onclick={() => showProgramme(programme.id)}>Open programme</button>
               </div>
             </div>
           </article>
@@ -422,6 +707,9 @@
             </dl>
             <div class="tag-list">
               {#each season.tags as tag}<span>{tag}</span>{/each}
+            </div>
+            <div class="card-actions">
+              <button type="button" onclick={() => showSeason(season.id)}>Open season</button>
             </div>
           </article>
         {:else}
