@@ -21,13 +21,37 @@ export const archiveSections = [
     id: 'seasons',
     label: 'Seasons',
     description: 'Season summaries, league finishes, cups, squads, and key moments.',
-    count: 3,
+    count: 5,
+  },
+  {
+    id: 'honours',
+    label: 'Honours',
+    description: 'Trophy records, winning years, competition notes, and linked seasons.',
+    count: 5,
+  },
+  {
+    id: 'managers',
+    label: 'Managers',
+    description: 'Manager profiles, tenures, honours, linked seasons, and research gaps.',
+    count: 5,
+  },
+  {
+    id: 'timeline',
+    label: 'Timeline',
+    description: 'Founding notes, eras, stadium moves, European milestones, and modern history.',
+    count: 10,
+  },
+  {
+    id: 'stadiums',
+    label: 'Stadiums',
+    description: 'Home grounds, temporary venues, capacity notes, and linked matches.',
+    count: 5,
   },
 ]
 
 export const featuredStats = [
-  { label: 'Archive areas', value: '4' },
-  { label: 'Records', value: '14' },
+  { label: 'Archive areas', value: '8' },
+  { label: 'Records', value: '52' },
   { label: 'Founded', value: '1899' },
   { label: 'Home', value: 'Tallaght' },
 ]
@@ -130,5 +154,19 @@ export const records = [
     meta: 'Season competition path',
     detail: 'Follow each campaign from qualifying rounds to group-stage or knockout fixtures.',
     tags: ['Season', 'Europe'],
+  },
+  {
+    type: 'managers',
+    title: 'Manager tenures',
+    meta: 'Coaches and club eras',
+    detail: 'Manager records covering appointment dates, honours, linked seasons, match records, and source notes.',
+    tags: ['Manager', 'History'],
+  },
+  {
+    type: 'managers',
+    title: 'Modern managers',
+    meta: 'Tallaght Stadium era',
+    detail: "Modern profiles for Bradley, O'Neill, and other managers tied to title wins and European campaigns.",
+    tags: ['Manager', 'Modern era'],
   },
 ]
