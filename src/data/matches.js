@@ -1,4 +1,6 @@
-export const matches = [
+import { heritageMatches, heritageSeasonOptions } from './heritageArchive.js'
+
+const curatedMatches = [
   {
     id: '2019-fai-cup-final-dundalk',
     title: 'Dundalk 1-1 Shamrock Rovers',
@@ -179,12 +181,331 @@ export const matches = [
       },
     ],
   },
+  {
+    id: '1928-bray-unknowns-record-win',
+    title: 'Shamrock Rovers 11-0 Bray Unknowns',
+    competition: 'League of Ireland',
+    date: '28 October 1928',
+    venue: 'Glenmalure Park',
+    result: 'Rovers won 11-0',
+    opponent: 'Bray Unknowns',
+    scoreline: '11-0',
+    scorers: ['Research needed'],
+    attendance: 'Research needed',
+    notes:
+      "The largest victory listed in the club's competitive records.",
+    timeline: [
+      'Played during the early Milltown era.',
+      'The eleven-goal margin remains the club record victory.',
+      'Contemporary scorer and attendance details still need newspaper research.',
+    ],
+    tags: ['League', 'Club record', 'Glenmalure Park'],
+    sourceLinks: [
+      {
+        label: 'Rovers records and statistics',
+        url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._records_and_statistics',
+      },
+    ],
+  },
+  {
+    id: '1957-manchester-united-home',
+    title: 'Shamrock Rovers 0-6 Manchester United',
+    competition: 'European Cup',
+    date: '25 September 1957',
+    venue: 'Dalymount Park',
+    result: 'Manchester United won 6-0',
+    opponent: 'Manchester United',
+    scoreline: '0-6',
+    scorers: [],
+    attendance: 'Research needed',
+    notes:
+      'The first European Cup match played by a club from the Republic of Ireland.',
+    timeline: [
+      'Rovers entered the European Champion Clubs Cup as Irish champions.',
+      'The match was staged at Dalymount Park.',
+      'It began a European record stretching across more than six decades.',
+    ],
+    tags: ['Europe', 'European Cup', 'Historic first'],
+    sourceLinks: [
+      {
+        label: 'UEFA account of the historic first',
+        url: 'https://www.uefa.com/uefaeuropaleague/news/01f5-0e799ecfdc26-e5110629a309-1000--the-irish-rovers-await-a-notable-first/',
+      },
+    ],
+  },
+  {
+    id: '1966-spora-away',
+    title: 'Spora Luxembourg 1-4 Shamrock Rovers',
+    competition: "European Cup Winners' Cup",
+    date: '5 October 1966',
+    venue: 'Luxembourg',
+    result: 'Rovers won 4-1',
+    opponent: 'Spora Luxembourg',
+    scoreline: '1-4',
+    scorers: ['Research needed'],
+    attendance: 'Research needed',
+    notes:
+      "Listed by UEFA as one of the club's biggest away wins in European competition.",
+    timeline: [
+      'Played in the European Cup Winners Cup.',
+      'Rovers scored four times away from home.',
+      'The result belongs to the celebrated 1960s European record.',
+    ],
+    tags: ['Europe', 'Cup Winners Cup', 'Away win'],
+    sourceLinks: [
+      {
+        label: 'UEFA Shamrock Rovers facts',
+        url: 'https://www.uefa.com/uefaconferenceleague/news/0278-15f65b07f84f-57fef4f5552e-1000--shamrock-rovers-facts/',
+      },
+    ],
+  },
+  {
+    id: '1982-fram-home',
+    title: 'Shamrock Rovers 4-0 Fram Reykjavik',
+    competition: 'UEFA Cup',
+    date: '30 September 1982',
+    venue: 'Glenmalure Park',
+    result: 'Rovers won 4-0',
+    opponent: 'Fram Reykjavik',
+    scoreline: '4-0',
+    scorers: ['Research needed'],
+    attendance: 'Research needed',
+    notes:
+      "UEFA lists the result as Rovers' biggest home win in European competition.",
+    timeline: [
+      'Rovers had won the away leg 3-0 in Iceland.',
+      'The four-goal home win completed a commanding tie.',
+      'The fixture was played at Glenmalure Park.',
+    ],
+    tags: ['Europe', 'UEFA Cup', 'Club record'],
+    sourceLinks: [
+      {
+        label: 'UEFA Shamrock Rovers facts',
+        url: 'https://www.uefa.com/uefaconferenceleague/news/0278-15f65b07f84f-57fef4f5552e-1000--shamrock-rovers-facts/',
+      },
+    ],
+  },
+  {
+    id: '1985-sporting-away',
+    title: 'Sporting CP 0-1 Shamrock Rovers',
+    competition: 'European Cup',
+    date: '16 August 1985',
+    venue: 'Estadio Jose Alvalade',
+    result: 'Rovers won 1-0',
+    opponent: 'Sporting CP',
+    scoreline: '0-1',
+    scorers: ['Harry Kenny'],
+    attendance: 'Research needed',
+    notes:
+      'A famous away victory in Lisbon during the Four in a Row era.',
+    timeline: [
+      'Harry Kenny scored the only goal.',
+      'The win came against one of the best-known opponents in the European archive.',
+      'The tie forms part of the 1980s European Cup record.',
+    ],
+    tags: ['Europe', 'European Cup', 'Away win'],
+    sourceLinks: [
+      {
+        label: 'Rovers European records',
+        url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._records_and_statistics',
+      },
+    ],
+  },
+  {
+    id: '1986-manchester-united-testimonial',
+    title: 'Shamrock Rovers 2-0 Manchester United',
+    competition: 'Friendly',
+    date: '14 August 1986',
+    venue: 'Glenmalure Park',
+    result: 'Rovers won 2-0',
+    opponent: 'Manchester United',
+    scoreline: '2-0',
+    scorers: ['Michael Bennett', "Liam O'Brien"],
+    attendance: 'Research needed',
+    notes:
+      'A Shay Brennan testimonial and one of the most notable friendly results at Milltown.',
+    timeline: [
+      'The match honoured former Rovers and Manchester United player Shay Brennan.',
+      "Michael Bennett and Liam O'Brien scored.",
+      'Rovers kept a clean sheet against the English visitors.',
+    ],
+    tags: ['Friendly', 'Glenmalure Park', 'Manchester United'],
+    sourceLinks: [
+      {
+        label: 'Rovers records and statistics',
+        url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._records_and_statistics',
+      },
+    ],
+  },
+  {
+    id: '1987-fai-cup-final-dundalk',
+    title: 'Shamrock Rovers 3-0 Dundalk',
+    competition: 'FAI Cup',
+    date: '26 April 1987',
+    venue: 'Dalymount Park',
+    result: 'Rovers won 3-0',
+    opponent: 'Dundalk',
+    scoreline: '3-0',
+    scorers: ['Research needed'],
+    attendance: 'Research needed',
+    notes:
+      'The victory completed a third consecutive league and cup double and closed the Four in a Row era with another trophy.',
+    timeline: [
+      'Rovers entered the final as league champions.',
+      'The 3-0 win secured a third consecutive FAI Cup.',
+      'It became the last FAI Cup triumph before the 32-year wait ended in 2019.',
+    ],
+    tags: ['Final', 'FAI Cup', 'Four in a Row'],
+    sourceLinks: [
+      {
+        label: 'Official club anniversary feature',
+        url: 'https://www.shamrockrovers.ie/news/on-this-day-26-april-1987/',
+      },
+    ],
+  },
+  {
+    id: '2009-sligo-tallaght-opener',
+    title: 'Shamrock Rovers 2-1 Sligo Rovers',
+    competition: 'League of Ireland',
+    date: '13 March 2009',
+    venue: 'Tallaght Stadium',
+    result: 'Rovers won 2-1',
+    opponent: 'Sligo Rovers',
+    scoreline: '2-1',
+    scorers: ['Gary Twigg', 'Dessie Baker'],
+    attendance: 'Research needed',
+    notes:
+      'The first Shamrock Rovers match at Tallaght Stadium after more than two decades without a permanent home.',
+    timeline: [
+      'Gary Twigg scored the first Rovers goal at the stadium.',
+      'Dessie Baker added the second.',
+      'The win opened the modern Tallaght era.',
+    ],
+    tags: ['League', 'Tallaght', 'Stadium opening'],
+    sourceLinks: [
+      {
+        label: 'Official club history',
+        url: 'https://www.shamrockrovers.ie/history/',
+      },
+    ],
+  },
+  {
+    id: '2009-real-madrid-friendly',
+    title: 'Shamrock Rovers 0-1 Real Madrid',
+    competition: 'Friendly',
+    date: '20 July 2009',
+    venue: 'Tallaght Stadium',
+    result: 'Real Madrid won 1-0',
+    opponent: 'Real Madrid',
+    scoreline: '0-1',
+    scorers: [],
+    attendance: '10,900',
+    notes:
+      "A high-profile friendly in Tallaght remembered as Cristiano Ronaldo's first appearance for Real Madrid.",
+    timeline: [
+      'The match drew a listed attendance of 10,900.',
+      'Rovers held Real Madrid scoreless until late in the game.',
+      'Karim Benzema scored the only goal.',
+    ],
+    tags: ['Friendly', 'Tallaght', 'Real Madrid'],
+    sourceLinks: [
+      {
+        label: 'Shamrock Rovers club history',
+        url: 'https://en.wikipedia.org/wiki/Shamrock_Rovers_F.C.',
+      },
+    ],
+  },
+  {
+    id: '2024-larne-away',
+    title: 'Larne 1-4 Shamrock Rovers',
+    competition: 'UEFA Conference League',
+    date: '24 October 2024',
+    venue: 'Windsor Park',
+    result: 'Rovers won 4-1',
+    opponent: 'Larne',
+    scoreline: '1-4',
+    scorers: ['Research needed'],
+    attendance: 'Research needed',
+    notes:
+      'The first away victory by a League of Ireland club in a UEFA group or league phase.',
+    timeline: [
+      'Rovers scored four times in Belfast.',
+      'The result was a landmark for Irish clubs in UEFA league-stage football.',
+      'It helped Rovers progress from the 2024-25 Conference League league phase.',
+    ],
+    tags: ['Europe', 'Conference League', 'Historic first'],
+    sourceLinks: [
+      {
+        label: 'UEFA 2024-25 league phase results',
+        url: 'https://www.uefa.com/uefaconferenceleague/news/0291-1bd1f56d94be-427c66cf03b0-1000--conference-league-league-phase-results-by-team/',
+      },
+    ],
+  },
+  {
+    id: '2024-borac-home',
+    title: 'Shamrock Rovers 3-0 Borac',
+    competition: 'UEFA Conference League',
+    date: '12 December 2024',
+    venue: 'Tallaght Stadium',
+    result: 'Rovers won 3-0',
+    opponent: 'Borac Banja Luka',
+    scoreline: '3-0',
+    scorers: ['Research needed'],
+    attendance: 'Research needed',
+    notes:
+      'A decisive league-phase win that confirmed Rovers as the first League of Ireland club to reach a UEFA knockout phase.',
+    timeline: [
+      'Rovers won by three goals at Tallaght Stadium.',
+      'The result secured progress from the Conference League league phase.',
+      'It created another first for a League of Ireland club.',
+    ],
+    tags: ['Europe', 'Conference League', 'Knockout qualification'],
+    sourceLinks: [
+      {
+        label: 'UEFA 2024-25 Conference League results',
+        url: 'https://www.uefa.com/uefaconferenceleague/news/0290-1bbee2bdd4c2-dac8802cf83b-1000--conference-league-all-the-results/',
+      },
+    ],
+  },
+  {
+    id: '2025-molde-away',
+    title: 'Molde 0-1 Shamrock Rovers',
+    competition: 'UEFA Conference League',
+    date: '13 February 2025',
+    venue: 'Aker Stadion',
+    result: 'Rovers won 1-0',
+    opponent: 'Molde',
+    scoreline: '0-1',
+    scorers: ['Research needed'],
+    attendance: 'Research needed',
+    notes:
+      'Rovers won the away leg of their first UEFA knockout tie before the contest was decided on penalties in Tallaght.',
+    timeline: [
+      'The match was the first leg of the knockout phase play-off.',
+      'Rovers carried a one-goal lead back to Dublin.',
+      'Molde eventually advanced 5-4 on penalties after a 1-1 aggregate draw.',
+    ],
+    tags: ['Europe', 'Conference League', 'Knockout phase'],
+    sourceLinks: [
+      {
+        label: 'UEFA 2024-25 Conference League results',
+        url: 'https://www.uefa.com/uefaconferenceleague/news/0290-1bbee2bdd4c2-dac8802cf83b-1000--conference-league-all-the-results/',
+      },
+    ],
+  },
 ]
+
+const featuredMatches = curatedMatches.map((match) => ({
+  ...match,
+  season: 'Featured',
+  sortDate: match.date.match(/\d{4}/)?.[0] ?? '0000',
+}))
+
+export const matches = [...featuredMatches, ...heritageMatches]
+
+export const matchSeasonOptions = ['Featured', ...heritageSeasonOptions]
 
 export const matchCompetitions = [
   'All',
-  'FAI Cup',
-  'UEFA Champions League',
-  'UEFA Europa League',
-  'All competitions',
+  ...new Set(matches.map((match) => match.competition).filter((competition) => competition !== 'All competitions')),
 ]

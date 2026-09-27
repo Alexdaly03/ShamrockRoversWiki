@@ -1,4 +1,6 @@
-export const seasons = [
+import { heritageSeasons } from './heritageArchive.js'
+
+const curatedSeasons = [
   {
     id: '2011-season',
     title: '2011 season',
@@ -151,6 +153,371 @@ export const seasons = [
       },
     ],
   },
+  {
+    id: '1922-23-season',
+    title: '1922-23 season',
+    period: '1920s',
+    manager: 'Selection committee era',
+    leagueFinish: 'League of Ireland champions',
+    cups: 'FAI Cup second round',
+    europe: 'European competition not established',
+    topScorer: 'Bob Fullam (27 league goals)',
+    stadium: 'Early grounds era',
+    summary:
+      'Rovers won the league at the first attempt after election to the League of Ireland, scoring 77 goals in 22 matches.',
+    highlights: [
+      'Finished first with 18 wins, three draws, and one defeat.',
+      'Scored 77 league goals and conceded 19.',
+      'Bob Fullam set the club record of 27 league goals in a season.',
+    ],
+    linkedMatchIds: [],
+    tags: ['League title', 'First league season', 'Bob Fullam'],
+    sourceLinks: [
+      {
+        label: 'List of Shamrock Rovers seasons',
+        url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._seasons',
+      },
+    ],
+  },
+  {
+    id: '1956-57-season',
+    title: '1956-57 season',
+    period: '1950s',
+    manager: 'Paddy Coad',
+    leagueFinish: 'League of Ireland champions',
+    cups: 'FAI Cup runners-up; Shield winners',
+    europe: 'Qualified for the European Cup',
+    topScorer: 'Tommy Hamilton (15 league goals)',
+    stadium: 'Glenmalure Park',
+    summary:
+      "A championship season for Coad's Colts that led directly to the club becoming Ireland's first European Cup entrant.",
+    highlights: [
+      'Won the eighth League of Ireland title.',
+      'Won the League of Ireland Shield.',
+      'Qualified for the 1957-58 European Cup.',
+      'Lost only once in the 22-match league campaign.',
+    ],
+    linkedMatchIds: ['1957-manchester-united-home'],
+    tags: ['League title', "Coad's Colts", 'Europe'],
+    sourceLinks: [
+      {
+        label: 'List of Shamrock Rovers seasons',
+        url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._seasons',
+      },
+      {
+        label: '1956-57 League of Ireland',
+        url: 'https://en.wikipedia.org/wiki/1956%E2%80%9357_League_of_Ireland',
+      },
+    ],
+  },
+  {
+    id: '1963-64-season',
+    title: '1963-64 season',
+    period: '1960s',
+    manager: 'Sean Thomas / Liam Tuohy era',
+    leagueFinish: 'League of Ireland champions',
+    cups: 'FAI Cup winners; Shield winners',
+    europe: 'European qualification',
+    topScorer: 'Eddie Bailham (18 league goals)',
+    stadium: 'Glenmalure Park',
+    summary:
+      'A domestic trophy-rich season that opened the celebrated run of six consecutive FAI Cup wins.',
+    highlights: [
+      'Won the League of Ireland title.',
+      'Won the 1964 FAI Cup.',
+      'Won the League of Ireland Shield.',
+      'Began the Six in a Row FAI Cup sequence.',
+    ],
+    linkedMatchIds: [],
+    tags: ['League title', 'FAI Cup', 'Six in a Row'],
+    sourceLinks: [
+      {
+        label: 'Rovers honours and records',
+        url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._records_and_statistics',
+      },
+      {
+        label: 'League top scorers',
+        url: 'https://en.wikipedia.org/wiki/List_of_League_of_Ireland_top_scorers',
+      },
+    ],
+  },
+  {
+    id: '1983-84-season',
+    title: '1983-84 season',
+    period: '1980s',
+    manager: 'Jim McLaughlin',
+    leagueFinish: 'League of Ireland champions',
+    cups: 'Domestic cup campaigns',
+    europe: 'Qualified for the European Cup',
+    topScorer: 'Research needed',
+    stadium: 'Glenmalure Park',
+    summary:
+      'The first championship of the famous Four in a Row team assembled under Jim McLaughlin.',
+    highlights: [
+      'Won the first of four consecutive league titles.',
+      'Restored Rovers to the top of Irish league football.',
+      'Established the core of the dominant mid-1980s side.',
+    ],
+    linkedMatchIds: [],
+    tags: ['League title', 'Four in a Row', 'Jim McLaughlin'],
+    sourceLinks: [
+      {
+        label: 'Official club history',
+        url: 'https://www.shamrockrovers.ie/history/',
+      },
+    ],
+  },
+  {
+    id: '1986-87-season',
+    title: '1986-87 season',
+    period: '1980s',
+    manager: 'Dermot Keely',
+    leagueFinish: 'League of Ireland champions',
+    cups: 'FAI Cup winners; League Cup runners-up',
+    europe: 'European Cup first round',
+    topScorer: 'Mick Byrne (12 league goals)',
+    stadium: 'Glenmalure Park',
+    summary:
+      'The fourth straight league title and third straight double, achieved in the final full season at Milltown.',
+    highlights: [
+      'Won the fourth consecutive league championship.',
+      'Beat Dundalk 3-0 in the FAI Cup final.',
+      'Finished the league with 18 wins from 22 matches.',
+      'Closed one of the greatest eras in Irish club football.',
+    ],
+    linkedMatchIds: ['1987-fai-cup-final-dundalk', '1986-manchester-united-testimonial'],
+    tags: ['League title', 'FAI Cup', 'Four in a Row'],
+    sourceLinks: [
+      {
+        label: '1986-87 Heritage Trust archive',
+        url: 'https://heritage.shamrockrovers.ie/index.php/Domestic/Season?id=1986-87',
+      },
+      {
+        label: 'List of Shamrock Rovers seasons',
+        url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._seasons',
+      },
+    ],
+  },
+  {
+    id: '1993-94-season',
+    title: '1993-94 season',
+    period: '1990s',
+    manager: 'Ray Treacy',
+    leagueFinish: 'League of Ireland champions',
+    cups: 'FAI Cup first round',
+    europe: 'Did not qualify',
+    topScorer: 'Stephen Geoghegan (23 league goals)',
+    stadium: 'RDS Arena',
+    summary:
+      'Rovers won their first league championship since leaving Glenmalure Park, powered by Stephen Geoghegan goals.',
+    highlights: [
+      'Won the league with 66 points from 32 matches.',
+      'Scored 62 league goals.',
+      'Stephen Geoghegan scored 23 league goals.',
+      'Delivered a major success during the homeless years.',
+    ],
+    linkedMatchIds: [],
+    tags: ['League title', 'RDS Arena', 'Stephen Geoghegan'],
+    sourceLinks: [
+      {
+        label: 'List of Shamrock Rovers seasons',
+        url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._seasons',
+      },
+    ],
+  },
+  {
+    id: '2006-season',
+    title: '2006 season',
+    period: '2000s',
+    manager: 'Pat Scully',
+    leagueFinish: 'First Division champions',
+    cups: 'Domestic cup campaigns',
+    europe: 'Did not qualify',
+    topScorer: 'Research needed',
+    stadium: 'Tolka Park',
+    summary:
+      'The supporter-owned club won promotion at the first attempt after the financial crisis and relegation of 2005.',
+    highlights: [
+      'Won the League of Ireland First Division.',
+      'Returned immediately to the Premier Division.',
+      'Recorded the club 1,000th league win against Kilkenny City.',
+      'Marked a decisive recovery under supporter ownership.',
+    ],
+    linkedMatchIds: [],
+    tags: ['First Division', 'Promotion', 'Supporter ownership'],
+    sourceLinks: [
+      {
+        label: 'Rovers records and statistics',
+        url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._records_and_statistics',
+      },
+    ],
+  },
+  {
+    id: '2009-season',
+    title: '2009 season',
+    period: '2000s',
+    manager: "Michael O'Neill",
+    leagueFinish: 'League runners-up',
+    cups: 'Domestic cup campaigns',
+    europe: 'Did not qualify from previous season',
+    topScorer: 'Gary Twigg (24 league goals)',
+    stadium: 'Tallaght Stadium',
+    summary:
+      'The first season in Tallaght brought a second-place league finish, European qualification, and a record scoring campaign from Gary Twigg.',
+    highlights: [
+      'Beat Sligo Rovers in the first match at Tallaght Stadium.',
+      'Finished second in the league.',
+      'Gary Twigg scored 24 league goals.',
+      'Hosted Real Madrid in a summer friendly.',
+    ],
+    linkedMatchIds: ['2009-sligo-tallaght-opener', '2009-real-madrid-friendly'],
+    tags: ['Tallaght opening', 'League runners-up', 'Gary Twigg'],
+    sourceLinks: [
+      {
+        label: 'Official club history',
+        url: 'https://www.shamrockrovers.ie/history/',
+      },
+      {
+        label: 'Rovers records and statistics',
+        url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._records_and_statistics',
+      },
+    ],
+  },
+  {
+    id: '2010-season',
+    title: '2010 season',
+    period: '2010s',
+    manager: "Michael O'Neill",
+    leagueFinish: 'League of Ireland champions',
+    cups: 'FAI Cup runners-up',
+    europe: 'Europa League qualifying',
+    topScorer: 'Research needed',
+    stadium: 'Tallaght Stadium',
+    summary:
+      'Rovers won their first league title since 1994 and the first championship of the Tallaght Stadium era.',
+    highlights: [
+      'Won the League of Ireland title.',
+      'Reached the FAI Cup final.',
+      'Beat Bnei Yehuda in Europe before facing Juventus.',
+      'Began a run of back-to-back championships.',
+    ],
+    linkedMatchIds: [],
+    tags: ['League title', 'Tallaght', 'Europa League'],
+    sourceLinks: [
+      {
+        label: 'Rovers records and statistics',
+        url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._records_and_statistics',
+      },
+    ],
+  },
+  {
+    id: '2021-season',
+    title: '2021 season',
+    period: '2020s',
+    manager: 'Stephen Bradley',
+    leagueFinish: 'League of Ireland champions',
+    cups: 'Domestic cup campaigns',
+    europe: 'Conference League qualifying play-off',
+    topScorer: 'Research needed',
+    stadium: 'Tallaght Stadium',
+    summary:
+      'Rovers retained the title, finishing 16 points clear and lifting the trophy in front of a full Tallaght Stadium.',
+    highlights: [
+      'Won a second consecutive league title.',
+      'Finished 16 points ahead of St Patricks Athletic.',
+      'Reached the Conference League qualifying play-off.',
+      'Continued a club-record unbeaten league run that had begun in 2019.',
+    ],
+    linkedMatchIds: [],
+    tags: ['League title', 'Back to back', 'Tallaght'],
+    sourceLinks: [
+      {
+        label: 'History of Shamrock Rovers',
+        url: 'https://en.wikipedia.org/wiki/History_of_Shamrock_Rovers_F.C.',
+      },
+      {
+        label: 'UEFA Shamrock Rovers facts',
+        url: 'https://www.uefa.com/uefaconferenceleague/news/0278-15f65b07f84f-57fef4f5552e-1000--shamrock-rovers-facts/',
+      },
+    ],
+  },
+  {
+    id: '2023-season',
+    title: '2023 season',
+    period: '2020s',
+    manager: 'Stephen Bradley',
+    leagueFinish: 'League of Ireland champions',
+    cups: 'Domestic cup campaigns',
+    europe: 'Conference League qualifying',
+    topScorer: 'Research needed',
+    stadium: 'Tallaght Stadium',
+    summary:
+      'The fourth consecutive championship matched the Four in a Row achievement of the 1980s.',
+    highlights: [
+      'Won a fourth consecutive league title.',
+      'Matched the championship streak achieved from 1983-84 to 1986-87.',
+      'Extended the Stephen Bradley era trophy record.',
+    ],
+    linkedMatchIds: [],
+    tags: ['League title', 'Four in a Row', 'Modern era'],
+    sourceLinks: [
+      {
+        label: 'Official club history',
+        url: 'https://www.shamrockrovers.ie/history/',
+      },
+    ],
+  },
+  {
+    id: '2024-season',
+    title: '2024 season',
+    period: '2020s',
+    manager: 'Stephen Bradley',
+    leagueFinish: 'League runners-up',
+    cups: 'Domestic cup campaigns',
+    europe: 'Conference League league phase and knockout qualification',
+    topScorer: 'Research needed',
+    stadium: 'Tallaght Stadium',
+    summary:
+      'A landmark European campaign took Rovers through the Conference League league phase and into UEFA knockout football for the first time.',
+    highlights: [
+      'Qualified for a third major UEFA league or group phase.',
+      'Beat Larne 4-1 away and Borac 3-0 at home.',
+      'Became the first League of Ireland club to reach a UEFA knockout phase.',
+      'Finished second in the domestic league.',
+    ],
+    linkedMatchIds: ['2024-larne-away', '2024-borac-home', '2025-molde-away'],
+    tags: ['Conference League', 'Knockout phase', 'European history'],
+    sourceLinks: [
+      {
+        label: 'UEFA 2024-25 Conference League results',
+        url: 'https://www.uefa.com/uefaconferenceleague/news/0290-1bbee2bdd4c2-dac8802cf83b-1000--conference-league-all-the-results/',
+      },
+      {
+        label: 'List of Shamrock Rovers seasons',
+        url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._seasons',
+      },
+    ],
+  },
 ]
 
-export const seasonPeriods = ['All', '2010s', '2020s']
+const curatedById = new Map(curatedSeasons.map((season) => [season.id, season]))
+
+export const seasons = [
+  ...heritageSeasons.map((season) => {
+    const curated = curatedById.get(season.id)
+    if (!curated) return season
+
+    return {
+      ...season,
+      ...curated,
+      linkedMatchIds: [...new Set([...season.linkedMatchIds, ...curated.linkedMatchIds])],
+      sourceLinks: [...season.sourceLinks, ...curated.sourceLinks],
+    }
+  }),
+  ...curatedSeasons.filter((season) => !heritageSeasons.some((record) => record.id === season.id)),
+]
+
+export const seasonPeriods = [
+  'All',
+  ...new Set(seasons.map((season) => season.period).filter(Boolean).sort()),
+]

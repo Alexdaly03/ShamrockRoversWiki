@@ -187,6 +187,67 @@ export const honours = [
       },
     ],
   },
+  {
+    id: 'first-division',
+    title: 'League of Ireland First Division',
+    category: 'National title',
+    count: 1,
+    status: 'Promotion title',
+    years: ['2006'],
+    summary:
+      'Rovers won the First Division in 2006, securing an immediate return to the Premier Division after the club was rebuilt under supporter ownership.',
+    notes: [
+      'The title followed relegation at the end of 2005.',
+      'The 2006 season is one of the most important recovery chapters in club history.',
+    ],
+    linkedSeasonIds: ['2006-season'],
+    sourceLinks: [
+      {
+        label: 'Rovers records and statistics',
+        url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._records_and_statistics',
+      },
+    ],
+  },
+  {
+    id: 'leinster-senior-cup',
+    title: 'Leinster Senior Cup',
+    category: 'Regional cup',
+    count: 18,
+    status: 'Regional competition',
+    years: [
+      '1923',
+      '1927',
+      '1929',
+      '1930',
+      '1933',
+      '1938',
+      '1953',
+      '1955',
+      '1956',
+      '1957',
+      '1958',
+      '1964',
+      '1969',
+      '1982',
+      '1985',
+      '1997',
+      '2012',
+      '2013',
+    ],
+    summary:
+      'An extensive regional record spanning the early Free State League period through to the Tallaght era.',
+    notes: [
+      'The competition is especially useful for filling out early and reserve-heavy season records.',
+      'Each winning year can later be connected to final opponents and programme scans.',
+    ],
+    linkedSeasonIds: [],
+    sourceLinks: [
+      {
+        label: 'Rovers records and statistics',
+        url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._records_and_statistics',
+      },
+    ],
+  },
 ]
 
 export const honourCategories = [
@@ -195,4 +256,5 @@ export const honourCategories = [
   'National cup',
   'National competition',
   'All-Ireland cup',
+  'Regional cup',
 ]

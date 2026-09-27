@@ -168,6 +168,211 @@ export const timelineEvents = [
       },
     ],
   },
+  {
+    id: 'inaugural-fai-cup-final',
+    year: '1921-22',
+    title: 'Inaugural FAI Cup final',
+    category: 'Honours',
+    summary:
+      'Rovers reached the first FAI Cup final before being elected to the League of Ireland for the following season.',
+    links: [{ label: 'FAI Cup record', type: 'honours', id: 'fai-cup' }],
+    sourceLinks: [
+      {
+        label: 'List of Shamrock Rovers seasons',
+        url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._seasons',
+      },
+    ],
+  },
+  {
+    id: 'milltown-opens',
+    year: '1926',
+    title: 'Glenmalure Park opens',
+    category: 'Stadium',
+    summary:
+      'Rovers moved into their long-term Milltown home, with the official opening marked by a friendly against Belfast Celtic.',
+    links: [{ label: 'Glenmalure Park', type: 'stadiums', id: 'glenmalure-park' }],
+    sourceLinks: [
+      {
+        label: 'Official club history',
+        url: 'https://www.shamrockrovers.ie/history/',
+      },
+    ],
+  },
+  {
+    id: 'first-european-cup-match',
+    year: '1957',
+    title: 'Ireland first European Cup representatives',
+    category: 'Europe',
+    summary:
+      'Rovers faced Manchester United at Dalymount Park and became the first club from the Republic of Ireland to play in the European Cup.',
+    links: [
+      { label: 'Manchester United match', type: 'matches', id: '1957-manchester-united-home' },
+      { label: '1956-57 season', type: 'seasons', id: '1956-57-season' },
+    ],
+    sourceLinks: [
+      {
+        label: 'UEFA history feature',
+        url: 'https://www.uefa.com/uefaeuropaleague/news/01f5-0e799ecfdc26-e5110629a309-1000--the-irish-rovers-await-a-notable-first/',
+      },
+    ],
+  },
+  {
+    id: 'fai-cup-1978',
+    year: '1978',
+    title: 'FAI Cup returns to Milltown',
+    category: 'Honours',
+    summary:
+      'Rovers beat Sligo Rovers in the FAI Cup final and returned to European competition under John Giles.',
+    links: [
+      { label: 'FAI Cup record', type: 'honours', id: 'fai-cup' },
+      { label: 'John Giles', type: 'managers', id: 'john-giles' },
+    ],
+    sourceLinks: [
+      {
+        label: 'Official club history',
+        url: 'https://www.shamrockrovers.ie/history/',
+      },
+    ],
+  },
+  {
+    id: 'last-milltown-season',
+    year: '1987',
+    title: 'Final season at Milltown',
+    category: 'Stadium',
+    summary:
+      'The fourth consecutive title and third consecutive double were followed by the loss of Glenmalure Park as the club home.',
+    links: [
+      { label: '1986-87 season', type: 'seasons', id: '1986-87-season' },
+      { label: 'Glenmalure Park', type: 'stadiums', id: 'glenmalure-park' },
+    ],
+    sourceLinks: [
+      {
+        label: 'Official club history',
+        url: 'https://www.shamrockrovers.ie/history/',
+      },
+    ],
+  },
+  {
+    id: 'glenmalure-demolished',
+    year: '1990',
+    title: 'Glenmalure Park demolished',
+    category: 'Stadium',
+    summary:
+      'The former Milltown home was demolished while Rovers continued the long search for a permanent replacement ground.',
+    links: [{ label: 'Glenmalure Park', type: 'stadiums', id: 'glenmalure-park' }],
+    sourceLinks: [
+      {
+        label: 'Glenmalure Park history',
+        url: 'https://en.wikipedia.org/wiki/Glenmalure_Park',
+      },
+    ],
+  },
+  {
+    id: 'rds-title-1994',
+    year: '1993-94',
+    title: 'League title at the RDS',
+    category: 'Honours',
+    summary:
+      'Ray Treacy side won the league, giving Rovers their first championship since leaving Milltown.',
+    links: [
+      { label: '1993-94 season', type: 'seasons', id: '1993-94-season' },
+      { label: 'RDS Arena', type: 'stadiums', id: 'rds-arena' },
+    ],
+    sourceLinks: [
+      {
+        label: 'List of Shamrock Rovers seasons',
+        url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._seasons',
+      },
+    ],
+  },
+  {
+    id: 'supporter-ownership',
+    year: '2005',
+    title: 'Supporters rebuild the club',
+    category: 'Era',
+    summary:
+      'After a severe financial crisis, the members-backed structure became central to the survival and rebuilding of Shamrock Rovers.',
+    links: [],
+    sourceLinks: [
+      {
+        label: 'Official club history',
+        url: 'https://www.shamrockrovers.ie/history/',
+      },
+    ],
+  },
+  {
+    id: 'first-division-title-2006',
+    year: '2006',
+    title: 'Immediate return as First Division champions',
+    category: 'Honours',
+    summary:
+      'The rebuilt club won the First Division and returned to the Premier Division at the first attempt.',
+    links: [
+      { label: '2006 season', type: 'seasons', id: '2006-season' },
+      { label: 'First Division honour', type: 'honours', id: 'first-division' },
+    ],
+    sourceLinks: [
+      {
+        label: 'Rovers records and statistics',
+        url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._records_and_statistics',
+      },
+    ],
+  },
+  {
+    id: 'tallaght-opening-night',
+    year: '13 March 2009',
+    title: 'First match at Tallaght Stadium',
+    category: 'Stadium',
+    summary:
+      'Rovers beat Sligo Rovers 2-1 as Gary Twigg and Dessie Baker scored on the long-awaited opening night.',
+    links: [
+      { label: 'Opening match', type: 'matches', id: '2009-sligo-tallaght-opener' },
+      { label: 'Tallaght Stadium', type: 'stadiums', id: 'tallaght-stadium' },
+    ],
+    sourceLinks: [
+      {
+        label: 'Official club history',
+        url: 'https://www.shamrockrovers.ie/history/',
+      },
+    ],
+  },
+  {
+    id: 'league-unbeaten-record',
+    year: '2019-2021',
+    title: 'Thirty-three league matches unbeaten',
+    category: 'Era',
+    summary:
+      'Rovers put together a 33-match unbeaten league run from October 2019 to May 2021.',
+    links: [
+      { label: '2020 season', type: 'seasons', id: '2020-season' },
+      { label: '2021 season', type: 'seasons', id: '2021-season' },
+    ],
+    sourceLinks: [
+      {
+        label: 'Official club history and records',
+        url: 'https://www.shamrockrovers.ie/history/',
+      },
+    ],
+  },
+  {
+    id: 'uefa-knockout-qualification',
+    year: '2024-25',
+    title: 'First League of Ireland club in a UEFA knockout phase',
+    category: 'Europe',
+    summary:
+      'A successful Conference League campaign took Rovers through the league phase and into a knockout play-off against Molde.',
+    links: [
+      { label: '2024 season', type: 'seasons', id: '2024-season' },
+      { label: 'Borac home', type: 'matches', id: '2024-borac-home' },
+      { label: 'Molde away', type: 'matches', id: '2025-molde-away' },
+    ],
+    sourceLinks: [
+      {
+        label: 'UEFA 2024-25 results',
+        url: 'https://www.uefa.com/uefaconferenceleague/news/0290-1bbee2bdd4c2-dac8802cf83b-1000--conference-league-all-the-results/',
+      },
+    ],
+  },
 ]
 
 export const timelineCategories = ['All', 'Foundation', 'Identity', 'Era', 'Honours', 'Stadium', 'Europe']

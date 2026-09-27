@@ -125,6 +125,91 @@ export const stadiums = [
       },
     ],
   },
+  {
+    id: 'dalymount-park',
+    name: 'Dalymount Park',
+    location: 'Phibsborough, Dublin',
+    era: 'European and temporary fixtures',
+    status: 'Temporary home',
+    capacity: 'Varied by era',
+    summary:
+      "A recurring venue in Rovers history, including the club's first European Cup match in 1957.",
+    notes: [
+      'Hosted the European Cup match against Manchester United on 25 September 1957.',
+      'Rovers also used Dalymount during parts of the homeless era.',
+      'The ground is central to the Dublin derby archive.',
+    ],
+    linkedMatchIds: ['1957-manchester-united-home'],
+    sourceLinks: [
+      {
+        label: 'UEFA account of the 1957 European debut',
+        url: 'https://www.uefa.com/uefaeuropaleague/news/01f5-0e799ecfdc26-e5110629a309-1000--the-irish-rovers-await-a-notable-first/',
+      },
+    ],
+  },
+  {
+    id: 'richmond-park',
+    name: 'Richmond Park',
+    location: 'Inchicore, Dublin',
+    era: 'Homeless years',
+    status: 'Temporary home',
+    capacity: 'Research needed',
+    summary:
+      'One of the Dublin grounds used by Rovers during the long period without a permanent home.',
+    notes: [
+      'Belongs in the season-by-season map of the homeless years.',
+      'Match and attendance records still need to be linked from the Heritage Trust archive.',
+    ],
+    linkedMatchIds: [],
+    sourceLinks: [
+      {
+        label: 'Shamrock Rovers club history',
+        url: 'https://en.wikipedia.org/wiki/History_of_Shamrock_Rovers_F.C.',
+      },
+    ],
+  },
+  {
+    id: 'morton-stadium',
+    name: 'Morton Stadium',
+    location: 'Santry, Dublin',
+    era: 'Homeless years',
+    status: 'Temporary home',
+    capacity: 'Research needed',
+    summary:
+      'A temporary Rovers venue during the period between Milltown and Tallaght.',
+    notes: [
+      'Used for home fixtures during the homeless era.',
+      'Future research should add exact seasons, fixtures, and crowd records.',
+    ],
+    linkedMatchIds: [],
+    sourceLinks: [
+      {
+        label: 'Shamrock Rovers club history',
+        url: 'https://en.wikipedia.org/wiki/History_of_Shamrock_Rovers_F.C.',
+      },
+    ],
+  },
+  {
+    id: 'whitehall-stadium',
+    name: 'Whitehall Stadium',
+    location: 'Whitehall, Dublin',
+    era: 'Homeless years',
+    status: 'Temporary home',
+    capacity: 'Research needed',
+    summary:
+      'Another ground used during the club journey through temporary Dublin homes.',
+    notes: [
+      'Part of the ground-by-ground record of the homeless period.',
+      'Primary match records and programme references remain to be added.',
+    ],
+    linkedMatchIds: [],
+    sourceLinks: [
+      {
+        label: 'Shamrock Rovers club history',
+        url: 'https://en.wikipedia.org/wiki/History_of_Shamrock_Rovers_F.C.',
+      },
+    ],
+  },
 ]
 
 export const stadiumStatuses = ['All', 'Current home', 'Former home', 'Temporary home', 'Historic ground']

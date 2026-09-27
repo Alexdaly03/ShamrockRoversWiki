@@ -43,10 +43,23 @@
     {#each players as player}
       <article class="player-card">
         <button class="player-avatar" type="button" onclick={() => onOpen(player.id)} aria-label={`Open ${player.name}`}>
-          {player.name
-            .split(' ')
-            .map((part) => part[0])
-            .join('')}
+          {#if player.photoUrl}
+            <img
+              src={player.photoUrl}
+              alt={player.photoAlt ?? `${player.name} portrait`}
+              loading="lazy"
+              onerror={(event) => {
+                event.currentTarget.hidden = true
+                event.currentTarget.nextElementSibling.hidden = false
+              }}
+            />
+          {/if}
+          <span hidden={Boolean(player.photoUrl)}>
+            {player.name
+              .split(' ')
+              .map((part) => part[0])
+              .join('')}
+          </span>
         </button>
         <div class="player-card-body">
           <div class="record-topline">

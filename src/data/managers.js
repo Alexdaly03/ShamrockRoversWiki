@@ -106,4 +106,166 @@ export const managers = [
       { label: 'Shamrock Rovers history', url: 'https://en.wikipedia.org/wiki/Shamrock_Rovers_F.C.' },
     ],
   },
+  {
+    id: 'jimmy-dunne',
+    name: 'Jimmy Dunne',
+    era: 'Historic era',
+    tenure: '1937-1942, 1947-1949',
+    role: 'Manager',
+    summary:
+      'A major early manager who had two spells in charge across the late 1930s and 1940s.',
+    record: 'Research needed',
+    honours: ['League of Ireland', 'FAI Cup'],
+    notes: [
+      'First spell ran from 1937 to 1942.',
+      'Returned for a second spell from 1947 to 1949.',
+      'His era includes league and cup success that should be linked to detailed season records.',
+    ],
+    linkedSeasonIds: [],
+    sourceLinks: [
+      { label: 'Shamrock Rovers manager list', url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._managers' },
+    ],
+  },
+  {
+    id: 'bob-fullam',
+    name: 'Bob Fullam',
+    era: 'Historic era',
+    tenure: '1942-1945',
+    role: 'Manager',
+    summary:
+      'The great early goalscorer later returned to lead the senior side during the 1940s.',
+    record: 'Research needed',
+    honours: ['FAI Cup'],
+    notes: [
+      'Managed Rovers from 1942 to 1945.',
+      'Connects the earliest league-winning generation to the wartime-era team.',
+      'Also has a player profile in the archive.',
+    ],
+    linkedSeasonIds: [],
+    sourceLinks: [
+      { label: 'Shamrock Rovers manager list', url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._managers' },
+    ],
+  },
+  {
+    id: 'sean-thomas',
+    name: 'Sean Thomas',
+    era: 'Historic era',
+    tenure: '1961-1964, 1976-1977',
+    role: 'Manager',
+    summary:
+      'Manager in two different periods, including the 1963-64 league championship season.',
+    record: 'Research needed',
+    honours: ['League of Ireland', 'FAI Cup'],
+    notes: [
+      'First spell ran from 1961 to 1964.',
+      'Returned for the 1976-77 period.',
+      'Led the side at the beginning of the famous 1960s trophy run.',
+    ],
+    linkedSeasonIds: ['1963-64-season'],
+    sourceLinks: [
+      { label: 'Shamrock Rovers manager list', url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._managers' },
+    ],
+  },
+  {
+    id: 'liam-tuohy',
+    name: 'Liam Tuohy',
+    era: 'Historic era',
+    tenure: '1964-1969, 1972-1973',
+    role: 'Player-manager / manager',
+    summary:
+      'The manager most closely associated with the Six in a Row FAI Cup achievement.',
+    record: 'Research needed',
+    honours: ['Six consecutive FAI Cups', 'League of Ireland Shield'],
+    notes: [
+      'Led Rovers through the 1964-1969 Six in a Row cup period.',
+      'Returned for another spell from 1972 to 1973.',
+      'Also represented the club as a player.',
+    ],
+    linkedSeasonIds: ['1963-64-season'],
+    sourceLinks: [
+      { label: 'Shamrock Rovers manager list', url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._managers' },
+      { label: 'Official club history', url: 'https://www.shamrockrovers.ie/history/' },
+    ],
+  },
+  {
+    id: 'john-giles',
+    name: 'John Giles',
+    era: 'Glenmalure Park era',
+    tenure: '1977-1983',
+    role: 'Player-manager',
+    summary:
+      'The Republic of Ireland great led an ambitious full-time project at Milltown.',
+    record: 'Research needed',
+    honours: ['FAI Cup'],
+    notes: [
+      'Managed the club from 1977 to 1983.',
+      'Won the 1978 FAI Cup.',
+      'His tenure included redevelopment work and a full-time professional approach.',
+    ],
+    linkedSeasonIds: [],
+    sourceLinks: [
+      { label: 'Shamrock Rovers manager list', url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._managers' },
+      { label: 'Official club history', url: 'https://www.shamrockrovers.ie/history/' },
+    ],
+  },
+  {
+    id: 'dermot-keely',
+    name: 'Dermot Keely',
+    era: 'Glenmalure Park era',
+    tenure: '1986-1988',
+    role: 'Player-manager / manager',
+    summary:
+      'Completed the Four in a Row period and led Rovers through the final Milltown season.',
+    record: 'Research needed',
+    honours: ['League of Ireland', 'FAI Cup'],
+    notes: [
+      'Succeeded Jim McLaughlin in 1986.',
+      'Completed the 1986-87 league and cup double.',
+      'Was in charge during the transition away from Glenmalure Park.',
+    ],
+    linkedSeasonIds: ['1986-87-season'],
+    sourceLinks: [
+      { label: 'Shamrock Rovers manager list', url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._managers' },
+    ],
+  },
+  {
+    id: 'ray-treacy',
+    name: 'Ray Treacy',
+    era: 'Modern era',
+    tenure: '1992-1996',
+    role: 'Manager',
+    summary:
+      'Manager of the 1993-94 league champions during the RDS era.',
+    record: 'Research needed',
+    honours: ['League of Ireland'],
+    notes: [
+      'Took charge in 1992.',
+      'Led Rovers to the 1993-94 championship.',
+      'The title was the first since the club left Milltown.',
+    ],
+    linkedSeasonIds: ['1993-94-season'],
+    sourceLinks: [
+      { label: 'Shamrock Rovers manager list', url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._managers' },
+    ],
+  },
+  {
+    id: 'pat-scully',
+    name: 'Pat Scully',
+    era: 'Modern era',
+    tenure: '2006-2008',
+    role: 'Manager',
+    summary:
+      'Led the supporter-owned club to the First Division title and back into the top flight.',
+    record: 'Research needed',
+    honours: ['League of Ireland First Division'],
+    notes: [
+      'Appointed at the start of 2006.',
+      'Won promotion as First Division champions in his first season.',
+      'Managed during the final years before the Tallaght Stadium move.',
+    ],
+    linkedSeasonIds: ['2006-season'],
+    sourceLinks: [
+      { label: 'Shamrock Rovers manager list', url: 'https://en.wikipedia.org/wiki/List_of_Shamrock_Rovers_F.C._managers' },
+    ],
+  },
 ]

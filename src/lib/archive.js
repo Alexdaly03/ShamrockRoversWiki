@@ -17,7 +17,7 @@ export const createSearchRecords = ({
     summary: player.summary,
     id: player.id,
     recordType: 'players',
-    keywords: `${player.name} ${player.position} ${player.era} ${player.summary} ${player.honours.join(' ')}`,
+    keywords: `${player.name} ${player.position} ${player.era} ${player.summary} ${player.honours.join(' ')} ${player.nationality ?? ''} ${player.shirtNumber ?? ''}`,
   })),
   ...matches.map((match) => ({
     type: 'Matches',

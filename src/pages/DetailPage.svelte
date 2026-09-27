@@ -16,6 +16,8 @@
   title={hero.title}
   intro={hero.intro}
   {stats}
+  image={hero.image ?? ''}
+  imageAlt={hero.imageAlt ?? hero.title}
   backLabel={hero.backLabel}
   {onBack}
 />

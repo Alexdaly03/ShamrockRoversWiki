@@ -28,6 +28,8 @@ export const createDetailView = ({
         title: selectedPlayer.name,
         intro: selectedPlayer.summary,
         backLabel: 'Back to players',
+        image: selectedPlayer.photoUrl ?? '',
+        imageAlt: selectedPlayer.photoAlt ?? `${selectedPlayer.name} portrait`,
       },
       onBack: actions.backToPlayers,
       stats: [
@@ -39,6 +41,18 @@ export const createDetailView = ({
       main: { eyebrow: 'Biography', title: 'Profile notes', text: selectedPlayer.biography },
       side: { title: 'Honours', tags: selectedPlayer.honours },
       cards: [
+        ...(selectedPlayer.shirtNumber || selectedPlayer.born || selectedPlayer.nationality
+          ? [
+              {
+                title: 'Squad details',
+                items: [
+                  selectedPlayer.shirtNumber ? `Squad number: ${selectedPlayer.shirtNumber}` : null,
+                  selectedPlayer.born ? `Born: ${selectedPlayer.born}` : null,
+                  selectedPlayer.nationality ? `Nationality: ${selectedPlayer.nationality}` : null,
+                ].filter(Boolean),
+              },
+            ]
+          : []),
         { title: 'Seasons', items: selectedPlayer.seasons },
         { title: 'Notable matches', items: selectedPlayer.notableMatches },
         { title: 'Sources', type: 'links', items: selectedPlayer.sourceLinks },

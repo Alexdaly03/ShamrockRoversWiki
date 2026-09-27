@@ -10,7 +10,7 @@
   import TimelinePage from './pages/TimelinePage.svelte'
   import { honourCategories, honours } from './data/honours.js'
   import { managerEras, managers } from './data/managers.js'
-  import { matches, matchCompetitions } from './data/matches.js'
+  import { matches, matchSeasonOptions } from './data/matches.js'
   import { players, playerPositions } from './data/players.js'
   import { programmes, programmeTypes } from './data/programmes.js'
   import { seasons, seasonPeriods } from './data/seasons.js'
@@ -24,6 +24,7 @@
   let activeSection = 'all'
   let activePosition = 'All'
   let activeCompetition = 'All'
+  let activeMatchSeason = matchSeasonOptions.find((season) => season !== 'Featured') ?? 'Featured'
   let activeProgrammeType = 'All'
   let activeSeasonPeriod = 'All'
   let activeHonourCategory = 'All'
@@ -64,6 +65,16 @@
   }
 
   const routeSections = Object.keys(routes)
+  const competitionOrder = ['League of Ireland', 'FAI Cup', 'League of Ireland Cup', 'League of Ireland Shield', 'Leinster Senior Cup', 'European Cup / Champions League', 'Fairs Cup / UEFA Cup / Europa League', "Cup Winners' Cup", 'UEFA Conference League', 'Friendly']
+
+  const sortCompetitions = (first, second) => {
+    const firstIndex = competitionOrder.indexOf(first)
+    const secondIndex = competitionOrder.indexOf(second)
+    if (firstIndex === -1 && secondIndex === -1) return first.localeCompare(second)
+    if (firstIndex === -1) return 1
+    if (secondIndex === -1) return -1
+    return firstIndex - secondIndex
+  }
 
   const updateRoute = (route) => {
     if (typeof window !== 'undefined' && window.location.hash !== route) {
@@ -179,11 +190,52 @@
     return matchesPosition && contains(`${player.name} ${player.position} ${player.era} ${player.summary} ${player.honours.join(' ')}`, query)
   })
 
-  $: visibleMatches = matches.filter((match) => {
-    const query = matchSearch.trim().toLowerCase()
-    const matchesCompetition = activeCompetition === 'All' || match.competition === activeCompetition
-    return matchesCompetition && contains(`${match.title} ${match.competition} ${match.venue} ${match.opponent} ${match.notes} ${match.tags.join(' ')}`, query)
-  })
+  $: rawMatchCompetitions = [
+    'All',
+    ...new Set(
+      matches
+        .filter((match) => match.season === activeMatchSeason)
+        .map((match) => match.competition),
+    ),
+  ]
+  $: currentMatchCompetitions = [rawMatchCompetitions[0], ...rawMatchCompetitions.slice(1).sort(sortCompetitions)]
+
+  $: selectedSeasonMatches = matches.filter((match) => match.season === activeMatchSeason)
+  $: seasonResults = selectedSeasonMatches.reduce((totals, match) => {
+    const outcome = match.outcome ?? (match.result.startsWith('Win') || match.result.startsWith('Rovers won') ? 'Win' : match.result.startsWith('Draw') ? 'Draw' : match.result.startsWith('Defeat') || / won /.test(match.result) ? 'Defeat' : '')
+    if (outcome === 'Win') totals.wins += 1
+    if (outcome === 'Draw') totals.draws += 1
+    if (outcome === 'Defeat') totals.defeats += 1
+
+    const score = match.scoreline?.match(/^(\d+)-(\d+)/)
+    if (score && (match.homeAway === 'H' || match.homeAway === 'A')) {
+      const homeGoals = Number(score[1])
+      const awayGoals = Number(score[2])
+      totals.goalsFor += match.homeAway === 'H' ? homeGoals : awayGoals
+      totals.goalsAgainst += match.homeAway === 'H' ? awayGoals : homeGoals
+      totals.scoredMatches += 1
+    }
+    return totals
+  }, { wins: 0, draws: 0, defeats: 0, goalsFor: 0, goalsAgainst: 0, scoredMatches: 0 })
+  $: matchSeasonStats = [
+    { label: 'Matches', value: selectedSeasonMatches.length },
+    { label: 'Record', value: `${seasonResults.wins}W ${seasonResults.draws}D ${seasonResults.defeats}L` },
+    { label: 'Goals', value: seasonResults.scoredMatches ? `${seasonResults.goalsFor} for / ${seasonResults.goalsAgainst} against` : 'See reports' },
+    { label: 'Competitions', value: currentMatchCompetitions.length - 1 },
+    { label: 'Home / away', value: `${selectedSeasonMatches.filter((match) => match.homeAway === 'H').length} / ${selectedSeasonMatches.filter((match) => match.homeAway === 'A').length}` },
+  ]
+
+  $: visibleMatches = matches
+    .filter((match) => {
+      const query = matchSearch.trim().toLowerCase()
+      const matchesSeason = match.season === activeMatchSeason
+      const matchesCompetition = activeCompetition === 'All' || match.competition === activeCompetition
+      return matchesSeason && matchesCompetition && contains(`${match.title} ${match.competition} ${match.venue} ${match.opponent} ${match.notes} ${match.tags.join(' ')}`, query)
+    })
+    .sort((first, second) => {
+      const competitionDifference = sortCompetitions(first.competition, second.competition)
+      return competitionDifference || second.sortDate.localeCompare(first.sortDate)
+    })
 
   $: visibleProgrammes = programmes.filter((programme) => {
     const query = programmeSearch.trim().toLowerCase()
@@ -242,7 +294,7 @@
   $: playerStats = [
     { label: 'Players listed', value: players.length },
     { label: 'Positions', value: playerPositions.length - 1 },
-    { label: 'Modern profiles', value: players.filter((player) => player.era === 'Modern era').length },
+    { label: 'Current squad', value: players.filter((player) => player.era.includes('present')).length },
     { label: 'Research notes', value: players.filter((player) => player.appearances === 'Research needed').length },
   ]
 
@@ -259,6 +311,25 @@
 
   $: sourceCount = countSources(sourceGroups)
   $: researchItems = createResearchItems({ players, matches, programmes, seasons, managers })
+  $: collectionCounts = {
+    players: players.length,
+    matches: matches.length,
+    programmes: programmes.length,
+    seasons: seasons.length,
+    honours: honours.length,
+    managers: managers.length,
+    timeline: timelineEvents.length,
+    stadiums: stadiums.length,
+  }
+  $: liveArchiveSections = archiveSections.map((section) => ({
+    ...section,
+    count: collectionCounts[section.id] ?? section.count,
+  }))
+  $: liveFeaturedStats = featuredStats.map((stat) =>
+    stat.label === 'Records'
+      ? { ...stat, value: Object.values(collectionCounts).reduce((total, count) => total + count, 0).toLocaleString('en-IE') }
+      : stat,
+  )
 
   const sectionLabel = (sectionId) =>
     archiveSections.find((section) => section.id === sectionId)?.label ?? 'Archive'
@@ -387,23 +458,33 @@
       eyebrow="Matches"
       title="Match records"
       records={visibleMatches}
-      filters={matchCompetitions}
+      filters={currentMatchCompetitions}
       activeFilter={activeCompetition}
       searchValue={matchSearch}
       searchLabel="Search matches"
       searchPlaceholder="Try derby, Europe, Tallaght..."
+      selectOptions={matchSeasonOptions}
+      selectValue={activeMatchSeason}
+      selectLabel="Season"
+      summaryStats={matchSeasonStats}
+      groupBy={(record) => record.competition}
       getTopline={(record) => record.competition}
       getMeta={(record) => record.date}
       getTitle={(record) => record.title}
       getSummary={(record) => record.notes}
       getFacts={(record) => [
-        { label: 'Opponent', value: record.opponent },
+        { label: 'Home / away', value: record.homeAway === 'H' ? 'Home' : record.homeAway === 'A' ? 'Away' : 'Neutral' },
         { label: 'Venue', value: record.venue },
         { label: 'Result', value: record.result },
+        { label: 'Attendance', value: record.attendance },
       ]}
       getTags={(record) => record.tags}
       onFilter={(value) => (activeCompetition = value)}
       onSearch={(value) => (matchSearch = value)}
+      onSelect={(value) => {
+        activeMatchSeason = value
+        activeCompetition = 'All'
+      }}
       onOpen={(record) => showMatch(record.id)}
       openLabel="Open match"
     />
@@ -565,8 +646,8 @@
     />
   {:else}
     <HomePage
-      {archiveSections}
-      {featuredStats}
+      archiveSections={liveArchiveSections}
+      featuredStats={liveFeaturedStats}
       records={visibleRecords}
       {activeSection}
       {searchTerm}
